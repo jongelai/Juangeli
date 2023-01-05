@@ -9,7 +9,7 @@ var imagenes = [
   { src: "Bulgaria.png", title: "Bulgaria" },
   { src: "Canada.png", title: "Canada" },
   { src: "Senegal.png", title: "Senegal" },
-  { src: "Bulgaria.png", title: "Bulgaria" },
+  { src: "Finland.png", title: "Finlandia" },
   { src: "Ecuador.png", title: "Ecuador" },
   { src: "Chile.png", title: "Chile" },
   { src: "China.png", title: "China" },
@@ -40,7 +40,9 @@ var fotonum;
 var numAl;
 var tamArray;
 
-  //funcion principal, se carga al principio
+ 
+
+//funcion principal, se carga al principio
 function inicio() {
   numaleat();
   pic = 1;
@@ -68,7 +70,8 @@ function inicio() {
     newImage.src = imagen.src;
     pic.src = newImage.src;
     pic.title = newImage.title;
-
+    pic++;
+    fotonum++;
     //Crea Lista de los paises
     listaPaises = document.getElementById("listaPaises");
     nomPais = document.createElement("li");
@@ -78,8 +81,7 @@ function inicio() {
     //tamaño bandera
     pic.width = 85;
     pic.height = 60;
-    pic++;
-    fotonum++;
+    
   });
 
   //imprime num de banderas
@@ -95,20 +97,36 @@ function numaleat() {
   newflag = document.getElementById("newflag");
   newflag.src = imagenes[numFlag].src;
   newflagname = imagenes[numFlag].title.toUpperCase();
-  console.log(newflagname);
-}
- //funcion principal de arranque
-function empieza() {
-  numaleat();
-}
-  // decide si la bandera entrada es la correcta
-function btnacepta() {
-  newflag = document.getElementById("newflag");
-  resp = document.getElementById("resp").value.toUpperCase();
-  correcto=document.getElementById("correcto");
-  
-  if (resp === newflagname) {
-    correcto.textContent = "Acertaste ¡¡";
-  } else correcto.textContent = "Fallaste ¡¡";
+  resp = document.getElementById("resp")
+  resp.value="";
 }
 
+  // decide si la bandera entrada es la correcta
+  var aciertos=1;
+  var fallos=1;
+  function btnacepta() {
+  newflag = document.getElementById("newflag");
+  resp = document.getElementById("resp").value.toUpperCase();
+  var correcto=document.getElementById("correcto");
+  var pantAciertos=document.getElementById("pantAciertos");
+  var pantaFallos=document.getElementById("pantaFallos");
+  if (resp === newflagname) {
+    correcto.textContent = "Acertaste ¡¡";
+    pantAciertos.textContent="Aciertos: "+aciertos;
+    aciertos++;
+  } else {
+    correcto.textContent = "Fallaste ¡¡";
+    pantaFallos.textContent="Fallos: "+fallos;
+    fallos++;
+  }
+}
+
+function instrucciones() {
+    document.getElementById("miSeccion").style.display = "block";
+}
+function cerrarVentana() {
+  document.getElementById("miSeccion").style.display = "none";
+}
+function contacto(){
+  alert("Juan Geli Verges  email:  juangeli@hotmail.com")
+}
